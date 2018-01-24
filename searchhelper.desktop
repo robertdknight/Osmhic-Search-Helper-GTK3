@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Name=Search Helper
+Exec=python /opt/searchhelper/searchhelper.py
+Type=Application
+Icon=searchhelper
+Categories=Internet
+StartupNotify=false
+
+

@@ -1,0 +1,20 @@
+12 August 2017
+Added Nullege and Stack Overflow search buttons.  With the change from August 4
+that enabled application icons in the dock for Wayland, the start.sh file was
+no longer necessary.   It was removed.
+
+4 August 2017
+Major Improvement - The Icon for the application now appears in the dock in both
+Wayland and X11.  The install.sh script is updated.   The app now uses a named
+icon in Gnome to show in the dock.
+
+29 July 2017
+Updated the application so that the browser launch does not lock the application.
+Previously, it launched the browser and the application froze.  This version
+now launches the browser in the background.
+
+1 July 2017
+Updated application to show a desktop icon.
+
+18 June 2017
+Initial Release.  searchhelper.py created and README.txt created.
