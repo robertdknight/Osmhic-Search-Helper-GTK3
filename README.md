@@ -12,10 +12,6 @@ GTK+ 3 Tutorial website.
 
 ![Osmhic Search Helper](https://rdknight.org/blog/wp-content/uploads/2018/01/Screenshot-20180124140918-456x162.png "Osmhic Search Helper")
 
-
-To use the application save the searchhelper.py into a folder of your
-choice. From a terminal, launch it via the command 'searchelper'
-
 Run ./install.sh from the directory where the zip file is extracted.
 The installation script will remove existing the searchhelper directory
 in /opt.  It will then copy the application files to opt/searchhelper.
