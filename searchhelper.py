@@ -64,7 +64,7 @@ class SearchHelperWindow(Gtk.Window):
                                  Gtk.PositionType.BOTTOM, 1, 1)
         # these are how many spaces the button takes up, w, & h
 
-        self.button1 = Gtk.Button.new_with_mnemonic("Qrobe")
+        self.button1 = Gtk.Button.new_with_mnemonic("Ecosia")
         self.button1.connect("clicked", self.on_button1_clicked)
         self.grid.attach_next_to(self.button1, self.button0, Gtk.PositionType.
                                  RIGHT, 1, 1)
@@ -110,7 +110,10 @@ class SearchHelperWindow(Gtk.Window):
         self.button5.connect("clicked", self.on_stackoverflow_clicked)
         self.grid.attach_next_to(self.button5, self.check_edu,
                                  Gtk.PositionType.BOTTOM, 1, 1)
-
+        self.button6 = Gtk.Button.new_with_mnemonic("Program Creek")
+        self.button6.connect("clicked", self.on_programcreek_clicked)
+        self.grid.attach_next_to(self.button6, self.check_chrome,
+                                 Gtk.PositionType.BOTTOM, 1, 1)
     # Save the browser selection to a text file.  As of 2017-06-18, this is
     # limited to Firefox and Chrome only
 
@@ -272,21 +275,21 @@ class SearchHelperWindow(Gtk.Window):
         pass
 
     def on_button1_clicked(self, button):
-        print("\"Qrobe\" button was clicked")
+        print("\"Ecosia\" button was clicked")
         browser = self.read_browser_options()
         filter_options = self.read_filter_options()
         try:
             search_text = self.entry.get_text()
             if filter_options == "True":
-                print(browser + ' ' + "\"http://qrobe.it/search/?q=" +
+                print(browser + ' ' + "\"https://www.ecosia.org/search?q=" +
                       search_text + self.read_filter_string("bing") + '\"')
-                os.system(browser + ' ' + "\"http://qrobe.it/search/?q=" +
+                os.system(browser + ' ' + "\"https://www.ecosia.org/search?q=" +
                           search_text + self.read_filter_string("bing") + '\"'
                           + ' &')
             else:
-                print(browser + ' ' + "\"http://qrobe.it/search/?q=" +
+                print(browser + ' ' + "\"https://www.ecosia.org/search?q=" +
                       search_text + '\"')
-                os.system(browser + ' ' + "\"http://qrobe.it/search/?q=" +
+                os.system(browser + ' ' + "\"https://www.ecosia.org/search?q=" +
                           search_text + '\"' + ' &')
         except Exception, err:
             print ' Failed on_button1_clicked '
@@ -391,6 +394,33 @@ class SearchHelperWindow(Gtk.Window):
             print sys.stderr.write('ERROR: %sn' % str(err))
             print
         pass
+
+    def on_programcreek_clicked(self, button):
+        print("\"programcreek\" was clicked")
+        browser = self.read_browser_options()
+        filter_options = self.read_filter_options()
+        try:
+            search_text = self.entry.get_text()
+            if filter_options == "True":
+                print(browser + ' '
+                      + "\"https://www.bing.com/search?q=" + search_text
+                      + self.read_filter_string("bing") + ' (site%3Aprogramcreek.com)\"')
+                os.system(browser + ' '
+                          + "\"https://www.bing.com/search?q="
+                          + search_text + self.read_filter_string("bing")
+                          + ' (site%3Aprogramcreek.com)\"' + ' &')
+            else:
+                print(browser + ' ' + "\"https://www.bing.com/search?q="
+                      + search_text + ' (site%3Aprogramcreek.com)\"')
+                os.system(browser + ' '
+                          + "\"https://www.bing.com/search?q="
+                          + search_text + ' (site%3Aprogramcreek.com)\"' + ' &')
+        except Exception, err:
+            print ' Failed on_nullege_clicked '
+            print sys.stderr.write('ERROR: %sn' % str(err))
+            print
+        pass
+
 win = SearchHelperWindow()
 win.connect("delete-event", Gtk.main_quit)
 win.show_all()
