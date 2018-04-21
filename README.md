@@ -8,7 +8,7 @@ originally appeared on Windows Desktop and then on the Universal Windows
 Platform (Windows store).  Those versions were written in C#.  This
 version is written in Python and uses GTK 3. 
 
-![Osmhic Search Helper](https://rdknight.org/blog/wp-content/uploads/2018/01/Screenshot-20180124140918-456x162.png "Osmhic Search Helper")
+![Osmhic Search Helper](https://rdknight.org/blog/wp-content/uploads/2018/04/Screenshot-20180421172534-488x189.png "Osmhic Search Helper")
 
 Run ./install.sh from the directory where the zip file is extracted.
 The installation script will remove existing the searchhelper directory
