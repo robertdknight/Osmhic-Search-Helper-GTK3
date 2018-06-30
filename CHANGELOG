@@ -1,3 +1,9 @@
+29 June 2018
+Added Vivaldi to browser selection
+
+21 April 2018
+Replaced Qrobe with Ecosia search
+
 12 August 2017
 Added Nullege and Stack Overflow search buttons.  With the change from August 4
 that enabled application icons in the dock for Wayland, the start.sh file was

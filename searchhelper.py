@@ -5,15 +5,17 @@ from gi.repository import Gtk, GLib
 import os
 import sys
 
-# by Robert Knight - June 2017
-# https://rdknight.org/blog
+# by Robert Knight
+# https://rdknight.org or https://www.robertknight.io
 # Use the contact page on that site to report any issues.
 
-# Where [1] or [2] appear in comments with someone's name and a Thanks, this
-# references the URL 'works cited' type comment at the bottom of the file.
+# Where [1] or [2] or the like appear in comments with someone's name
+# and a Thanks, this references the URL 'works cited' type comment at
+# the bottom of the file.
 
 
 icon = ("searchhelper")
+
 
 class SearchHelperWindow(Gtk.Window):
 
@@ -81,7 +83,7 @@ class SearchHelperWindow(Gtk.Window):
 
         self.check_firefox = Gtk.CheckButton("Firefox")
         self.check_firefox.connect("toggled", self.on_firefox_toggled)
-        self.check_firefox.set_active(True)
+        self.check_firefox.set_active(False)
         self.grid.attach_next_to(self.check_firefox, self.button0, Gtk.
                                  PositionType.BOTTOM, 1, 1)
 
@@ -96,7 +98,7 @@ class SearchHelperWindow(Gtk.Window):
         self.check_edu.set_active(False)
         self.grid.attach_next_to(self.check_edu, self.button2, Gtk.PositionType.BOTTOM, 1, 1)
 
-        self.link_button = Gtk.LinkButton("http://rdknight.org/blog",
+        self.link_button = Gtk.LinkButton("https://rdknight.org",
                                           "Visit the blog")
         self.grid.attach_next_to(self.link_button, self.button3, Gtk.
                                  PositionType.BOTTOM, 1, 1)
@@ -114,6 +116,12 @@ class SearchHelperWindow(Gtk.Window):
         self.button6.connect("clicked", self.on_programcreek_clicked)
         self.grid.attach_next_to(self.button6, self.check_chrome,
                                  Gtk.PositionType.BOTTOM, 1, 1)
+
+        self.check_vivaldi = Gtk.CheckButton("vivaldi")
+        self.check_vivaldi.connect("toggled", self.on_vivaldi_toggled)
+        self.check_vivaldi.set_active(True)
+        self.grid.attach_next_to(self.check_vivaldi, self.check_firefox, Gtk.
+                                 PositionType.BOTTOM, 1, 1)
     # Save the browser selection to a text file.  As of 2017-06-18, this is
     # limited to Firefox and Chrome only
 
@@ -219,27 +227,41 @@ class SearchHelperWindow(Gtk.Window):
         return filter_string
 
     def on_firefox_toggled(self, button):
+        """ Toggle the Firefox Browser """
         value = button.get_active()
         self.entry.set_editable(value)
         if value == True:
             print("Firefox On\True")
             self.check_chrome.set_active(False)
+            self.check_vivaldi.set_active(False)
             self.save_browser_options('firefox')
         else:
             print("Firefox Off\False")
-            self.check_chrome.set_active(True)
-            self.save_browser_options('google-chrome')
+
+    def on_vivaldi_toggled(self, button):
+        """ Toggle the Vivaldi Browser """
+        value = button.get_active()
+        self.entry.set_editable(value)
+        if value == True:
+            print("Vivaldi On\True")
+            self.check_chrome.set_active(False)
+            self.check_firefox.set_active(False)
+            self.save_browser_options('vivaldi')
+        else:
+            print("Vivaldi Off\False")
+
+
     def on_chrome_toggled(self, button):
+        """ Toggle the Chrome browser """
         value = button.get_active()
         self.entry.set_editable(value)
         if value == True:
             self.check_firefox.set_active(False)
+            self.check_vivaldi.set_active(False)
             print("Chrome On\True")
             self.save_browser_options('google-chrome')
         else:
-            self.check_firefox.set_active(True)
             print("Chrome Off\False")
-            self.save_browser_options('firefox')
 
     def on_edu_toggled(self, button):
         value = button.get_active()
@@ -252,6 +274,7 @@ class SearchHelperWindow(Gtk.Window):
             self.save_filter_options("False")
 
     def on_button0_clicked(self, button):
+        """ Click the Bing Search button """
         print("\"Bing\" button was clicked")
         browser = self.read_browser_options()
         filter_options = self.read_filter_options()
@@ -275,6 +298,7 @@ class SearchHelperWindow(Gtk.Window):
         pass
 
     def on_button1_clicked(self, button):
+        """ Click the Ecosia search button """
         print("\"Ecosia\" button was clicked")
         browser = self.read_browser_options()
         filter_options = self.read_filter_options()
@@ -298,6 +322,7 @@ class SearchHelperWindow(Gtk.Window):
         pass
 
     def on_button2_clicked(self, button):
+        """ Click the Google Search Button"""
         print("\"Google\" button was clicked")
         browser = self.read_browser_options()
         filter_options = self.read_filter_options()
